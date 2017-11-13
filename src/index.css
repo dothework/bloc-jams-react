@@ -1,5 +1,11 @@
 body {
+  background-image: url(/assets/images/blurred_backgrounds/blur_bg_3.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
 }

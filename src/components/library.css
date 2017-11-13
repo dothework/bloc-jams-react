@@ -1,0 +1,35 @@
+.library .album {
+  display: block;
+  position: relative;
+  padding: 1rem;
+  text-align: center;
+  width: 30%;
+  float: left;
+  text-decoration: none;
+  opacity: 0.9;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.library .album:hover {
+  color: rgba(255, 255, 255, 1);
+  opacity: 1;
+}
+
+.library img {
+  width: 100%;
+}
+
+.library div {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.library .album-title {
+  font-size: 1.25rem;
+}
+
+.library .album-artist,
+.library .album-song-count {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
