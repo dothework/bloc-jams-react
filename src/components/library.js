@@ -11,7 +11,7 @@ class Library extends Component {
 
   render() {
    return (
-     <section class='library'>
+     <section className='library'>
      {
        this.state.albums.map(album =>
          <Link to={`/album/${album.slug}`}>
