@@ -11,7 +11,37 @@ class Album extends Component {
     })
 
     this.state = {
-      album: album
+      album: album,
+      currentSong: album.songs[0],
+      isPlaying: false
+    }
+
+    this.audioElement = document.createElement('audio')
+    this.audioElement.src = album.songs[0].audioSrc
+  }
+
+  play(song) {
+    this.audioElement.play();
+    this.setState({ isPlaying: true });
+  }
+
+  pause(song) {
+    this.audioElement.pause();
+    this.setState({ isPlaying: false });
+  }
+
+  setSong(song) {
+    this.audioElement.src = song.audioSrc;
+    this.setState({ currentSong: song })
+  }
+
+  handleSongClick(song) {
+    const isSameSong = this.state.currentSong === song;
+    if (this.state.isPlaying && isSameSong) {
+      this.pause(song);
+    } else {
+      if (!isSameSong) { this.setSong(song) }
+      this.play(song)
     }
   }
 
@@ -27,22 +57,27 @@ class Album extends Component {
         </div>
       </section>
       <table id="song-list">
-        <colgroup>
-          <col id="song-number-column" />
-          <col id="song-title-column" />
-          <col id="song-duration-column" />
-        </colgroup>
-        <tbody>
-        {
-          this.state.album.songs.map((item, index)  =>
-            <tr className="album-view-song-item">
-            <td className="song-item-number" data-song-number={index}>{index+1}</td>
-            <td className="song-item-title">{ item.title }</td>
-            <td className="song-item-duration">{item.duration }</td>
-            </tr>
-          )
-        }
-        </tbody>
+      <colgroup>
+         <col id="song-number-column" />
+         <col id="song-title-column" />
+         <col id="song-duration-column" />
+      </colgroup>
+      <tbody>
+         { this.state.album.songs.map( (item, index) =>
+           <tr className="song" key={index} onClick={() => this.handleSongClick(item)} >
+             <td className="song-actions">
+               <button>
+                 <span className="song-number">{index+1}</span>
+                 <span className="ion-play"></span>
+                 <span className="ion-pause"></span>
+               </button>
+             </td>
+             <td className="song-title">{item.title}</td>
+             <td className="song-duration">{item.duration}</td>
+           </tr>
+         )
+       }
+      </tbody>
       </table>
       </div>
     );
